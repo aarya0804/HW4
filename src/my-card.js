@@ -13,10 +13,10 @@ export class MyCard extends LitElement {
 
   constructor() {
     super();
-    this.title = "Cruiseee";
+    this.title = "Ellie";
     this.imageSrc =
-      "https://lamag.com/.image/t_share/MTk3NTU1OTk3NTMzMDIxODkw/top-gun-maverick-tom-cruise-la-mag.jpg";
-    this.description = "This is a description of the card";
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSxvlTorktzxvNhw1gX8xIiwmh7nT7IH2F3cg&s";
+    this.description = "";
     this.fancy = false;
   }
 
@@ -90,15 +90,17 @@ export class MyCard extends LitElement {
     return html`
       <div class="wrapper">
         <div class="card">
-          <img class="image" src="${this.imageSrc}" alt="Top Gun" />
+          <img class="image" src="${this.imageSrc}" alt="Last of Us" />
           <h2>${this.title}</h2>
           <details ?open="${this.fancy}" @toggle="${this.openChanged}">
             <slot>
-              <p>Carddddddd</p>
               <p>
-                <a href="${this.imageSrc}" target="_blank"
-                  >Tom Cruise is awesome</a
-                >
+                Ellie is the main character in The Last of Us Part II. She is a
+                tough and skilled survivor in a post-apocalyptic world. In this
+                game, she sets out on a dangerous journey for revenge after a
+                tragic event. Along the way, she faces tough choices, fights
+                enemies, and struggles with guilt and loss. Her story is
+                emotional, showing how revenge can change a person
               </p>
             </slot>
           </details>
