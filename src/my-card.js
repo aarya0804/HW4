@@ -1,22 +1,23 @@
-import { LitElement, html, css } from 'lit';
+import { LitElement, html, css } from "lit";
 
 /**
  * Now it's your turn. Here's what we need to try and do:
- * 1. Get you HTML from your card working in here 
+ * 1. Get you HTML from your card working in here
  * 2. Get your CSS rescoped as needed to work here
  */
 
 export class MyCard extends LitElement {
-
   static get tag() {
-    return 'my-card';
+    return "my-card";
   }
 
   constructor() {
     super();
     this.title = "Cruiseee";
-    this.imageSrc = "https://lamag.com/.image/t_share/MTk3NTU1OTk3NTMzMDIxODkw/top-gun-maverick-tom-cruise-la-mag.jpg";
+    this.imageSrc =
+      "https://lamag.com/.image/t_share/MTk3NTU1OTk3NTMzMDIxODkw/top-gun-maverick-tom-cruise-la-mag.jpg";
     this.description = "This is a description of the card";
+    this.fancy = false;
   }
 
   static get styles() {
@@ -25,9 +26,14 @@ export class MyCard extends LitElement {
         display: block;
       }
 
-    :host
+      :host([fancy]) {
+        display: block;
+        background-color: pink;
+        border: 2px solid fuchsia;
+        box-shadow: 10px 5px 5px red;
+      }
 
-      .wrapper { 
+      :host .wrapper {
         display: flex;
         flex-wrap: wrap;
         gap: 10px;
@@ -70,52 +76,32 @@ export class MyCard extends LitElement {
       }
     `;
   }
-
-  
+  openChanged(e) {
+    console.log(e);
+    if (e.target.getAttribute("open") !== null) {
+      this.fancy = true;
+    } else {
+      this.fancy = false;
+    }
+  }
 
   render() {
     // return html`<div>${this.title}</div>`;
     return html`
-      <button id="add">Add Card</button>
-      <button class="duplicate">Clone Card</button>
-      <button id='name-change'>Change name</button>
-      <button id='pic-change'>Change pic. dm me bruh</button>
-      <button id="bg-change">Change background</button>
-      <button id="delete">Delete card</button>
-
       <div class="wrapper">
         <div class="card">
-          <img class="image" src="${this.imageSrc}" alt="Top Gun"/>
-          <slot> </slot>
+          <img class="image" src="${this.imageSrc}" alt="Top Gun" />
           <h2>${this.title}</h2>
-          <div>
-            <ul>
-              <li>Carddddddd</li>
-              <li><a href="${this.imageSrc}" target="_blank">Top gun is awesome</a></li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="card">
-          <img class="image" src="${this.imageSrc}" alt="Top Gun"/>
-          <h2>${this.title}</h2>
-          <div>
-            <ul>
-              <li>Carddddddd</li>
-              <li><a href="${this.imageSrc}" target="_blank">Tom Cruise is awesome</a></li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="card">
-          <img class="image" src="${this.imageSrc}" alt="Top Gun"/>
-          <h2>${this.title}</h2>
-          <div>
-            <ul>
-              <li>Carddddddd</li>
-              <li><a href="${this.imageSrc}" target="_blank">Top gun is awesome</a></li>
-            </ul>
-          </div>
+          <details ?open="${this.fancy}" @toggle="${this.openChanged}">
+            <slot>
+              <p>Carddddddd</p>
+              <p>
+                <a href="${this.imageSrc}" target="_blank"
+                  >Tom Cruise is awesome</a
+                >
+              </p>
+            </slot>
+          </details>
         </div>
       </div>
     `;
@@ -124,9 +110,10 @@ export class MyCard extends LitElement {
   static get properties() {
     return {
       title: { type: String },
+      imageSrc: { type: String },
+      fancy: { type: Boolean },
     };
   }
-  
 }
 
 globalThis.customElements.define(MyCard.tag, MyCard);
