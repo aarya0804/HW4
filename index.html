@@ -18,7 +18,16 @@
     }
     polaris-chip {
       margin: 16px;
+      --polaris-chip-background-color: azure;
     }
+
+    a {
+      margin: 16px;
+      color: red;
+      background-color: azure;
+      padding: 50px;
+    }
+
   </style>
   <title>polaris-chip / my-card</title>
 </head>
@@ -31,8 +40,20 @@
   <polaris-chip title="Sports are the only thing that matter"></polaris-chip>
   <polaris-chip title="Grants and donations"></polaris-chip>
 
+  <a href="https://psu.edu/" target="blank">PSU</a>
+
   <h1>my-card</h1>
+  
   <my-card></my-card>
+
+  <style>
+    my-card[fancy] {
+      --my-card-fancy-bg: #FF0000;
+    }
+    </style>
+    <my-card title="Minesotta Wild">
+      <p>A professional hockey team, yet they have terrible colors. I wish I had a <strong>AWESOME</strong> neon yellow / lime jersey like their retro-reverse jerseys</p>
+    </my-card>
 
   <!-- this is what is bringing in the definition for this tag -->
   <script type="module" src="./src/polaris-chip.js"></script>
